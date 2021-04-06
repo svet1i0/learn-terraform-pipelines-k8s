@@ -2,7 +2,7 @@ terraform {
   backend "remote" {
     organization = "shared_devops_sandbox"    
     workspaces {
-      name = "tf-pl-k8s-vault-consul-gke"
+      name = "terraform-pipes-k8s-vault-gke"
     }
   }
 required_providers {
