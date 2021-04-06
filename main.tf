@@ -1,8 +1,8 @@
 terraform {
   backend "remote" {
-    organization = "hashicorp-learn"    
+    organization = "shared_devops_sandbox"    
     workspaces {
-      name = "learn-terraform-pipelines-k8s"
+      name = "tf-pl-k8s-vault-consul-gke"
     }
   }
 required_providers {
