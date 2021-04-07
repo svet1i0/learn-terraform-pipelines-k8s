@@ -10,6 +10,15 @@ variable "cluster_name" {
   description = "Name of cluster."
 }
 
+variable "cluster_range" {
+  default     = "10.25.80.0/20"
+  description = "cluster IP range"
+}
+
+variable "alias_ip_range" {
+  default     = "10.25.65.0/24"
+  description = "alias IP range"
+}
 variable "google_project" {
   type        = string
   description = "Google Project to deploy cluster"
