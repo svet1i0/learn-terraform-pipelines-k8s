@@ -1,6 +1,6 @@
 variable "region" {
   type        = string
-  default     = "europe-central2"
+  default     = "us-central1"
   description = "GCP region to deploy clusters."
 }
 
