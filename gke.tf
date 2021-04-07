@@ -28,6 +28,14 @@ resource "google_container_node_pool" "engineering_preemptible_nodes" {
   location = data.google_compute_zones.available.names.0
 
   node_count = var.enable_consul_and_vault ? 5 : 3
+  
+  network    = google_compute_network.vpc.name
+  subnetwork = google_compute_subnetwork.subnet.name
+
+  ip_allocation_policy {
+      cluster_ipv4_cidr_block  = var.cluster_range
+      services_ipv4_cidr_block = var.alias_ip_range
+    }
 
   node_config {
     preemptible  = true
