@@ -9,7 +9,15 @@ resource "google_container_cluster" "engineering" {
   # node pool and immediately delete it.
   remove_default_node_pool = true
   initial_node_count       = 1
+  
+  network    = google_compute_network.vpc.name
+  subnetwork = google_compute_subnetwork.subnet.name
 
+  ip_allocation_policy {
+      cluster_ipv4_cidr_block  = var.cluster_range
+      services_ipv4_cidr_block = var.alias_ip_range
+    }
+  
   master_auth {
     username = var.username
     password = var.password
@@ -29,14 +37,6 @@ resource "google_container_node_pool" "engineering_preemptible_nodes" {
 
   node_count = var.enable_consul_and_vault ? 5 : 3
   
-  network    = google_compute_network.vpc.name
-  subnetwork = google_compute_subnetwork.subnet.name
-
-  ip_allocation_policy {
-      cluster_ipv4_cidr_block  = var.cluster_range
-      services_ipv4_cidr_block = var.alias_ip_range
-    }
-
   node_config {
     preemptible  = true
     machine_type = "n1-standard-1"
