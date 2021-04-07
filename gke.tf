@@ -12,11 +12,6 @@ resource "google_container_cluster" "engineering" {
   
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name
-
-  ip_allocation_policy {
-      cluster_ipv4_cidr_block  = var.cluster_range
-      services_ipv4_cidr_block = var.alias_ip_range
-    }
   
   master_auth {
     username = var.username
